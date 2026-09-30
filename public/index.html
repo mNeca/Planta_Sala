@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planta Sala — Seat Placement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <h1>Planta Sala</h1>
+        </div>
+        <p class="tagline">Classroom seat placement</p>
+      </header>
+
+      <main>
+        <!-- Role menu -->
+        <section id="view-menu" class="panel view">
+          <h2>Who are you?</h2>
+          <p class="hint">Choose your role to begin.</p>
+          <div class="role-actions">
+            <button type="button" class="btn btn-primary" id="btn-teacher">
+              Teacher
+            </button>
+            <button type="button" class="btn btn-secondary" id="btn-student">
+              Student
+            </button>
+          </div>
+        </section>
+
+        <!-- Teacher controls -->
+        <section id="view-teacher" class="panel view hidden">
+          <button type="button" class="back-link" data-back>← Back</button>
+          <h2>Teacher</h2>
+          <form id="form-start" class="start-form">
+            <label for="student-count">Number of students</label>
+            <div class="inline-row">
+              <input
+                type="number"
+                id="student-count"
+                min="1"
+                max="18"
+                value="18"
+                required
+              />
+              <button type="submit" class="btn btn-primary">
+                Start placement
+              </button>
+            </div>
+          </form>
+          <div class="teacher-actions">
+            <button type="button" class="btn btn-ghost" id="btn-resolve">
+              Resolve round now
+            </button>
+            <button type="button" class="btn btn-danger" id="btn-reset">
+              Reset session
+            </button>
+          </div>
+          <div id="teacher-status" class="status-box"></div>
+        </section>
+
+        <!-- Student join -->
+        <section id="view-student" class="panel view hidden">
+          <button type="button" class="back-link" data-back>← Back</button>
+          <h2>Student</h2>
+          <form id="form-join" class="start-form">
+            <label for="student-name">Your name</label>
+            <div class="inline-row">
+              <input
+                type="text"
+                id="student-name"
+                maxlength="24"
+                placeholder="e.g. Ana"
+                autocomplete="name"
+                required
+              />
+              <button type="submit" class="btn btn-primary">Join</button>
+            </div>
+          </form>
+          <div id="student-status" class="status-box"></div>
+        </section>
+
+        <!-- Shared classroom -->
+        <section id="classroom-wrap" class="classroom-wrap">
+          <div id="session-banner" class="session-banner">
+            Waiting for the teacher to start placement…
+          </div>
+
+          <div class="classroom" id="classroom" aria-label="Classroom layout">
+            <div class="front-row">
+              <div class="teacher-desk" title="Teacher desk"></div>
+              <div class="board">QUADRO</div>
+              <div class="door" aria-label="Door">
+                <span>P</span><span>O</span><span>R</span><span>T</span><span>A</span>
+              </div>
+            </div>
+
+            <div class="desks" id="desks"></div>
+          </div>
+
+          <p class="legend">
+            <span><i class="swatch available"></i> Available</span>
+            <span><i class="swatch claimed"></i> Your pick</span>
+            <span><i class="swatch conflict"></i> Conflict</span>
+            <span><i class="swatch taken"></i> Assigned</span>
+          </p>
+        </section>
+      </main>
+
+      <div id="toast" class="toast hidden" role="status"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

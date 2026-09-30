@@ -1,0 +1,475 @@
+:root {
+  --bg-top: #e8f2ea;
+  --bg-bottom: #f7faf6;
+  --ink: #1a2e22;
+  --muted: #5a6f62;
+  --green: #2f9e44;
+  --green-dark: #237a34;
+  --green-soft: #d8f0dd;
+  --board: #3d7ea6;
+  --door: #1f1f1f;
+  --desk-border: #2f9e44;
+  --desk-bg: #ffffff;
+  --danger: #c0392b;
+  --conflict: #e67e22;
+  --shadow: 0 12px 40px rgba(26, 46, 34, 0.08);
+  --radius: 14px;
+  --font: "DM Sans", system-ui, sans-serif;
+  --display: "Fraunces", Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 0%, #cfe8d4 0%, transparent 55%),
+    radial-gradient(ellipse 70% 45% at 90% 10%, #d5e6f0 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2.5rem;
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.brand-mark {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 3px;
+  background: var(--green);
+  box-shadow: 0 0 0 3px var(--green-soft);
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(47, 158, 68, 0.15);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.25rem;
+}
+
+.panel h2 {
+  margin: 0 0 0.35rem;
+  font-family: var(--display);
+  font-size: 1.35rem;
+}
+
+.hint {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.role-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.15rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: var(--green);
+  color: white;
+  box-shadow: 0 6px 16px rgba(47, 158, 68, 0.28);
+}
+
+.btn-primary:hover {
+  background: var(--green-dark);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--ink);
+  border: 1.5px solid rgba(47, 158, 68, 0.35);
+}
+
+.btn-ghost {
+  background: var(--green-soft);
+  color: var(--green-dark);
+}
+
+.btn-danger {
+  background: #fde8e6;
+  color: var(--danger);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.back-link {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font: inherit;
+  padding: 0;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+
+.back-link:hover {
+  color: var(--ink);
+}
+
+.start-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.inline-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+input[type="number"],
+input[type="text"] {
+  font: inherit;
+  padding: 0.65rem 0.8rem;
+  border-radius: 10px;
+  border: 1.5px solid rgba(26, 46, 34, 0.18);
+  background: white;
+  min-width: 10rem;
+  color: var(--ink);
+}
+
+input:focus {
+  outline: 2px solid var(--green);
+  outline-offset: 1px;
+}
+
+.teacher-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.status-box {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: var(--green-soft);
+  color: var(--green-dark);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  min-height: 2.8rem;
+}
+
+.status-box.empty {
+  background: #eef2f0;
+  color: var(--muted);
+}
+
+.classroom-wrap {
+  animation: rise 0.45s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.session-banner {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+  color: var(--muted);
+  min-height: 1.4rem;
+}
+
+.classroom {
+  background: #f3faf4;
+  border: 2px solid rgba(47, 158, 68, 0.35);
+  border-radius: 18px;
+  padding: 1rem 1rem 1.35rem;
+  box-shadow: var(--shadow);
+}
+
+.front-row {
+  display: grid;
+  grid-template-columns: 72px 1fr 36px;
+  gap: 0.75rem;
+  align-items: start;
+  margin-bottom: 1.35rem;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.teacher-desk {
+  height: 42px;
+  background: var(--green);
+  border-radius: 4px;
+}
+
+.board {
+  height: 36px;
+  background: var(--board);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  margin-top: 3px;
+}
+
+.door {
+  background: var(--door);
+  color: white;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-height: 72px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.15;
+  padding: 0.35rem 0;
+}
+
+.desks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.desk-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+}
+
+.desk {
+  aspect-ratio: 1.35 / 1;
+  min-height: 58px;
+  background: var(--desk-bg);
+  border: 2px solid var(--desk-border);
+  margin-left: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.25rem;
+  font-size: clamp(0.65rem, 1.8vw, 0.82rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+  cursor: default;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  word-break: break-word;
+  position: relative;
+}
+
+.desk-row .desk:first-child {
+  margin-left: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.desk-row .desk:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.desk.selectable {
+  cursor: pointer;
+}
+
+.desk.selectable:hover {
+  background: var(--green-soft);
+  transform: scale(1.03);
+  z-index: 1;
+}
+
+.desk.mine {
+  background: #fff4d6;
+  border-color: #d4a017;
+}
+
+.desk.conflict {
+  background: #ffe8d4;
+  border-color: var(--conflict);
+}
+
+.desk.assigned {
+  background: var(--green-soft);
+  border-color: var(--green-dark);
+  cursor: default;
+}
+
+.desk.disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  justify-content: center;
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 3px;
+  border: 2px solid var(--desk-border);
+  background: white;
+  display: inline-block;
+}
+
+.swatch.claimed {
+  background: #fff4d6;
+  border-color: #d4a017;
+}
+
+.swatch.conflict {
+  background: #ffe8d4;
+  border-color: var(--conflict);
+}
+
+.swatch.taken {
+  background: var(--green-soft);
+  border-color: var(--green-dark);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: white;
+  padding: 0.75rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  max-width: calc(100% - 2rem);
+  animation: rise 0.25s ease;
+}
+
+@media (max-width: 560px) {
+  .front-row {
+    grid-template-columns: 52px 1fr 28px;
+    gap: 0.45rem;
+  }
+
+  .teacher-desk {
+    height: 34px;
+  }
+
+  .board {
+    height: 30px;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+  }
+
+  .door {
+    min-height: 58px;
+    font-size: 0.58rem;
+  }
+
+  .desk {
+    min-height: 48px;
+    font-size: 0.58rem;
+  }
+
+  .inline-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input[type="number"],
+  input[type="text"] {
+    min-width: 0;
+    width: 100%;
+  }
+}
