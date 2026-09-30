@@ -22,11 +22,16 @@
         <p class="tagline">Classroom seat placement</p>
       </header>
 
+      <p id="connection-status" class="connection-status" data-kind="muted"></p>
+
       <main>
         <!-- Role menu -->
         <section id="view-menu" class="panel view">
           <h2>Who are you?</h2>
-          <p class="hint">Choose your role to begin.</p>
+          <p class="hint">
+            The teacher opens the room first and shares the code. Students join
+            with that code on their phones.
+          </p>
           <div class="role-actions">
             <button type="button" class="btn btn-primary" id="btn-teacher">
               Teacher
@@ -41,6 +46,21 @@
         <section id="view-teacher" class="panel view hidden">
           <button type="button" class="back-link" data-back>← Back</button>
           <h2>Teacher</h2>
+
+          <div id="room-display" class="room-display hidden">
+            <div class="room-label">Room code</div>
+            <div class="room-code-row">
+              <span id="room-code-text" class="room-code-text">—————</span>
+              <button type="button" class="btn btn-ghost" id="btn-copy-room">
+                Copy invite link
+              </button>
+            </div>
+            <p class="hint room-hint">
+              Keep this tab open. Students use the code (or the invite link) to
+              join.
+            </p>
+          </div>
+
           <form id="form-start" class="start-form">
             <label for="student-count">Number of students</label>
             <div class="inline-row">
@@ -73,6 +93,17 @@
           <button type="button" class="back-link" data-back>← Back</button>
           <h2>Student</h2>
           <form id="form-join" class="start-form">
+            <label for="room-code">Room code</label>
+            <input
+              type="text"
+              id="room-code"
+              maxlength="8"
+              placeholder="e.g. K7M2P"
+              autocomplete="off"
+              spellcheck="false"
+              required
+              class="room-input"
+            />
             <label for="student-name">Your name</label>
             <div class="inline-row">
               <input
@@ -120,7 +151,8 @@
       <div id="toast" class="toast hidden" role="status"></div>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+    <script src="game.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
